@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
+import Header from './Header.jsx'
 // Hi its senen, here i'd like to show you how I like to organize code in react:
 
 // i like to declare the component like this (putting 'export default' directly like this
 // (this isn't important but its cleaner imo, just know that there can only be one 'export default' declaration per .jsx file)
 export default function App() {
     return (<>
+        <Header/>
         <p style={styles.p}>Hello Salsa!</p>
         <Parent/>
     </>)
