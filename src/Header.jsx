@@ -1,15 +1,17 @@
-
-import Filter from './Filter.jsx'
-import LogIn from './LogIn.jsx'
 import Logo from './Logo.jsx'
+import ModalButton from './ModalButton.jsx'
 
 export default function Header() {
     return (
-        <header style={styles.header}>
+        <header className='glass-background' style={styles.header}>
             <nav style={styles.nav}>
-                <Filter/>
+                <ModalButton title='Login or Signin' className='headerButton'>
+                    <p>This is the Filter Menu!</p>
+                </ModalButton>
                 <Logo/>
-                <LogIn/>
+                <ModalButton title='Login or Signin' className='headerButton'>
+                    <p>This is the signin / login menu!</p>
+                </ModalButton>
             </nav>
         </header>
     )
@@ -21,12 +23,6 @@ const styles = {
         padding: '10px 0',
         textAlign: 'center',
         fontSize: 'larger',
-        // Glass effect
-        background: 'rgba(255, 255, 255, 0.1)',  /* subtle white background */
-        backdropFilter: 'blur(8px)',  /* key for glass effect */
-        WebkitBackdropFilter: 'blur(8px)',  /* for Safari */
-        border: '1px solid rgba(255, 255, 255, 0.2)',  /* subtle border */
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',  /* subtle shadow */
     },
     nav: {
         display: 'flex',
