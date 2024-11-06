@@ -12,15 +12,13 @@ export default function App() {
 
 // then, I like to add the css of each component inside the .jsx like this: 
 // (I believe this is way cleaner than making extra .css files or putting the css directly in the html which makes it ugly)
+// also, the global css is inside index.html, for simplicity
 const styles = {
     p: {
         fontWeight: 'bold',
         color: 'black',
         fontSize: 'large'
     },
-    someOtherThing: {
-        style: 'stylish'
-    }
 }
 
 // OK, cool, here are 2 things I think migh be valuable: 

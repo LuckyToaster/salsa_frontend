@@ -4,7 +4,33 @@
     <meta charset="UTF-8" />
     <!--<link rel="icon" type="image/svg+xml" href="/vite.svg" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>SALSa</title>
+    <style>
+        html, body, #root {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+        }
+        body {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-color: #ff99b9;
+            background-image: radial-gradient( at 1% 9%, hsla(279, 69%, 69%, 1) 0, rgba(0, 0, 0, 0) 41% ), radial-gradient(at 1% 94%, hsla(103, 87%, 75%, 1) 0, rgba(0, 0, 0, 0) 48%), radial-gradient(at 82% 94%, hsla(163, 76%, 75%, 1) 0, rgba(0, 0, 0, 0) 57%), radial-gradient(at 72% 22%, hsla(167, 79%, 66%, 1) 0, rgba(0, 0, 0, 0) 46%), radial-gradient(at 79% 46%, hsla(76, 89%, 73%, 1) 0, rgba(0, 0, 0, 0) 47%), radial-gradient(at 34% 66%, hsla(308, 92%, 77%, 1) 0, rgba(0, 0, 0, 0) 45%), radial-gradient(at 41% 98%, hsla(250, 99%, 61%, 1) 0, rgba(0, 0, 0, 0) 41%);
+            /*background-image: linear-gradient(220.55deg, #EAEAEA 0%, #8B8B8B 100%);*/
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        #root {
+          position: relative;
+          z-index: 1;
+        }
+    </style>
   </head>
   <body>
     <div id="root"></div>
