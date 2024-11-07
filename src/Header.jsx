@@ -1,17 +1,23 @@
-import Logo from './Logo.jsx'
 import ModalButton from './ModalButton.jsx'
+import { SignInForm, LogInForm } from './Form.jsx'
+import logo from './assets/logo.jpeg'
 
 export default function Header() {
     return (
         <header className='glass-background' style={styles.header}>
             <nav style={styles.nav}>
-                <ModalButton title='Login or Signin' className='headerButton'>
+                <ModalButton title='Filter' className='headerButton'>
                     <p>This is the Filter Menu!</p>
                 </ModalButton>
-                <Logo/>
-                <ModalButton title='Login or Signin' className='headerButton'>
-                    <p>This is the signin / login menu!</p>
-                </ModalButton>
+                <img style={styles.logo} src={logo}/>
+                <div>
+                    <ModalButton title='Login' className='headerButton'>
+                        <LogInForm sendToParent={(json) => console.log(json.username)}/> 
+                    </ModalButton>
+                    <ModalButton title='Signin' style={{marginLeft: '10px'}} className='headerButton'>
+                        <SignInForm sendToParent={(json) => console.log(json.username)}/>
+                    </ModalButton>
+                </div>
             </nav>
         </header>
     )
@@ -30,5 +36,9 @@ const styles = {
         justifyContent: 'space-between',
         alignItems: 'center',
         margin: '0 15px 0 15px',
+    },
+    logo: {
+        height: '41px',
+        width: 'auto',
     }
 }
