@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react'
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Header/>
+        <Parent/>
         <Grid>
             {Array(20).fill().map((_, index) => <Card key={index}/> )}
         </Grid>
