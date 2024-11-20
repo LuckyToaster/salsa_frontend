@@ -6,16 +6,24 @@ import Header from './Header.jsx'
 import Grid from './Grid.jsx'
 import Card from './Card.jsx'
 
+import { useState, useEffect } from 'react'
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Header/>
+        <Parent/>
         <Grid>
             {Array(20).fill().map((_, index) => <Card key={index}/> )}
         </Grid>
     </StrictMode>,
 )
 
+
+function getJsonData() {
+    return fetch('https://dummyjson.com/users')
+        .then(res => res.json())
+        .then(console.log);
+}
 
 // example of sending data from child to parent 
 export function Child({sendToParent}) {
@@ -27,12 +35,12 @@ export function Child({sendToParent}) {
     return <button onClick={handleClick}>Click Me! {count}</button>
 }
 
-
+ 
 export function Parent() {
     const [count, setCount] = useState(0);
     return (<>
         <div>Parent received: {count} </div>
-        <Child sendToParent={setCount}/>
+        <Child2 sendToParent={setCount}/>
     </>)
 }
 
@@ -41,10 +49,11 @@ export function Parent() {
 export function Child2({sendToParent}) {
     const [count, setCount] = useState(0);
     useEffect(() => sendToParent(count), [count])
-    return <button onClick={() => setCount(count + 1)}>Click Me! {count}</button>
+    return <button onClick={() => setCount((prev) => prev + 1)}>Click Me! {count}</button>
 }
 
 // also, notice how weird things
 // onClick={doSomething()}  (calls function during render) BAD
 // onClick={() => doSomething()} is correct and passes function to be called on click
 // onClick={doSomething} is correct and does the same thing (but function must be declared)
+
