@@ -1,10 +1,10 @@
 import ModalButton from './ModalButton.jsx'
 import { SignInForm, LogInForm } from './Form.jsx'
-import logo from './assets/logo.jpeg'
+import logo from './assets/logosals.png'
 
 export default function Header() {
     return (
-        <header className='glass-background' style={styles.header}>
+        <header className='black-background' style={styles.header}>
             <nav style={styles.nav}>
                 <ModalButton title='Filter' className='headerButton'>
                     <p>This is the Filter Menu!</p>

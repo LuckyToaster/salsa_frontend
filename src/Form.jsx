@@ -67,19 +67,26 @@ const styles = {
 }
 
 
-export function LogInForm({sendToParent}) {
-    const loginInitials = { username: '', password: '' }
+
+
+export function LogInForm({ sendToParent }) {
+    const loginInitials = { username: '', password: '' };
     const loginSchema = object({
         username: string().required('Username is required'),
-        password: string().required('Password is required')
-    })
+        password: string().required('Password is required'),
+    });
+
     return (
-        <Form sendToParent={sendToParent} initialValues={loginInitials} validationSchema={loginSchema} submitButton='Log In'>
-            <FormRow name='username' label='User Name'/>
-            <FormRow name='password' label='Password'/>
-        </Form>
-    )
+        <div>
+            
+            <Form sendToParent={sendToParent} initialValues={loginInitials} validationSchema={loginSchema} submitButton="Log In">
+                <FormRow name="username" label="User Name" />
+                <FormRow name="password" label="Password" />
+            </Form>
+        </div>
+    );
 }
+
 
 
 export function SignInForm({sendToParent}) {
