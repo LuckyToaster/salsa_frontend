@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import './main.css'
+
 /*
 export function Card() {
     return (
@@ -292,7 +294,7 @@ const styles = {
   cardContainer: {
     width: '256px',
     padding: '16px',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     borderRadius: '8px',
     boxShadow: '0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)',
     cursor: 'pointer',
@@ -385,7 +387,7 @@ const UserIcon = () => (
   </svg>
 );
 
-export default function Card({ title = "Title", tags = ["tag1", "tag2"], description = "Description" }) {
+export default function Card({ title = "Title", tags = ["tag1", "tag2"], description = "Description", className="glass-background"}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
