@@ -1,23 +1,19 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import './main.css'
-
 import Header from './Header.jsx'
-import Grid from './Grid.jsx'
-import Card from './Card.jsx'
-
-import { useState, useEffect } from 'react'
+import CardGrid from './CardGrid.jsx'
+import './main.css'
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
         <Header/>
-        <Parent/>
-        <Grid>
-            {Array(20).fill().map((_, index) => <Card key={index}/> )}
-        </Grid>
+        <CardGrid/>
     </StrictMode>,
 )
 
+
+/*
+import { useState, useEffect } from 'react'
 
 function getJsonData() {
     return fetch('https://dummyjson.com/users')
@@ -57,3 +53,4 @@ export function Child2({sendToParent}) {
 // onClick={() => doSomething()} is correct and passes function to be called on click
 // onClick={doSomething} is correct and does the same thing (but function must be declared)
 
+*/

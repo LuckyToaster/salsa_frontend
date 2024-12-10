@@ -1,21 +1,27 @@
 import ModalButton from './ModalButton.jsx'
-import { SignInForm, LogInForm } from './Form.jsx'
-import logo from './assets/logo.jpeg'
+import { SignInForm, LogInForm, FilterForm} from './Form.jsx'
+import logo from './assets/logosals.png'
+import { useState, useEffect } from 'react'
 
 export default function Header() {
+    const [userId, setUserId] = useState()
+    const [contactId, setContactId] = useState()
+    const [filter, setFilter] = useState()
+
+    
     return (
         <header className='glass-background' style={styles.header}>
             <nav style={styles.nav}>
-                <ModalButton title='Filter' className='headerButton'>
-                    <p>This is the Filter Menu!</p>
+                <ModalButton title='Filter' className='headerButton' style={{marginRight: '85px'}}>
+                    <FilterForm sendToParent={(json) => console.log(json)}/>
                 </ModalButton>
                 <img style={styles.logo} src={logo}/>
                 <div>
                     <ModalButton title='Login' className='headerButton'>
-                        <LogInForm sendToParent={(json) => console.log(json.username)}/> 
+                        <LogInForm sendToParent={(json) => console.log(json)}/> 
                     </ModalButton>
                     <ModalButton title='Signin' style={{marginLeft: '10px'}} className='headerButton'>
-                        <SignInForm sendToParent={(json) => console.log(json.username)}/>
+                        <SignInForm sendToParent={(json) => console.log(json)}/>
                     </ModalButton>
                 </div>
             </nav>

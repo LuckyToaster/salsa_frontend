@@ -1,5 +1,5 @@
 import { Formik, Form as FormikForm, Field, ErrorMessage } from 'formik'
-import { object, string, number, ref} from 'yup'
+import { object, string, number, ref, array } from 'yup'
 
 export function Form({children, sendToParent, initialValues, validationSchema, submitButton}) {
     return (
@@ -46,7 +46,7 @@ const styles = {
         position: 'relative'  
     },
     label: {
-        width: '150px',    
+        width: '12rem',    
         fontWeight: 'bold',
         color: 'white'
     },
@@ -83,6 +83,107 @@ export function LogInForm({sendToParent}) {
 
 
 export function SignInForm({sendToParent}) {
+    const i = { username: '', email: ''}
+    const s = object({
+        email: string().email('Invalid email address').required('Email is required'),
+        password: string()
+            .min(12, 'Password must be at least 12 characters long')
+            .matches(/[A-Z]/, 'Password must contain at least one uppercase letter')
+            .matches(/(?=(?:\D*\d){4})/, 'Password must contain at least 4 digits')
+            .matches(/[!@#$%^&*_]/, 'Password must contain at least one special character')
+            .required('Password is required'),
+        repeatPassword: string()
+            .oneOf([ref('password')], 'Passwords must match')
+            .required('Please repeat your password'),
+    })
+    return (
+        <Form sendToParent={sendToParent} initialValues={i} validationSchema={s} submitButton='Register'>
+            <FormRow name='email' label='Email'/>
+            <FormRow name='password' label='Password'/>
+            <FormRow name='repeatPassword' label='Repeat Password'/>
+        </Form>
+    )
+}
+
+
+/*
+export function FilterForm({sendToParent}) {
+    const i = {title: '', tagsAny: [], tagsAll: [], community: '', area: ''}
+    const s = object({
+        title: string(),
+        tagsAny: array(string()),
+        community: string(),
+        area: string()
+    })
+    return (
+        <Form sendToParent={sendToParent} initialValues={i} validationSchema={s} submitButton='Register'>
+            <FormRow name='title' label='Title'/>
+            <FormRow name='tagsAny' label='Tags'/>
+            <FormRow name='community' label='Autonomous Community'/>
+            <FormRow name='area' label='Province'/>
+        </Form>
+    )
+}
+*/
+
+export function FilterForm({sendToParent}) {
+    const initialValues = { title: '', 
+        tagsAny: [''], 
+        community: '', 
+        area: ''
+    }
+    
+    const schema = object({
+        title: string(),
+        tagsAny: array(string()),
+        community: string(),
+        area: string()
+    })
+
+    return (
+        <Formik
+            initialValues={initialValues}
+            validationSchema={schema}
+            onSubmit={sendToParent}
+        >
+            {({ values, setFieldValue }) => (
+                <Form>
+                    <FormRow name='title' label='Title'/>
+                    <div>
+                        <label style={{color: 'white'}}>Tags</label>
+                        <button type="button" onClick={() => {
+                            setFieldValue('tagsAny', [...values.tagsAny, '']);
+                        }}>Add Tag</button>
+                    </div>
+
+                    {values.tagsAny.map((tag, index) => (
+                        <div key={index}>
+                            <Field name={`tagsAny.${index}`} type="text"/>
+                            <button type="button" onClick={() => {
+                                const newTags = values.tagsAny.filter((_, i) => i !== index);
+                                setFieldValue('tagsAny', newTags);
+                            }}>Remove</button>
+                        </div>
+                    ))}
+
+                    <FormRow name='community' label='Autonomous Community'/>
+                    <FormRow name='area' label='Province'/>
+                    <button type="submit">Search</button>
+                </Form>
+            )}
+        </Formik>
+    )
+}
+
+
+const filterForm = {
+    tagsDiv: {
+        display: 'flex',
+        justifyContent: 'space-between'
+    }
+}
+
+/*
     const signinInitials = { username: '', email: '', password: '', repeatPassword: '', age: '', gender: '' }
     const signinSchema = object({
         username: string().required('Username is required'),
@@ -106,19 +207,6 @@ export function SignInForm({sendToParent}) {
             .oneOf(['male', 'female'], 'Please select a valid gender')
             .required('Gender is required'),
     })
-    return (
-        <Form sendToParent={sendToParent} initialValues={signinInitials} validationSchema={signinSchema} submitButton='Register'>
-            <FormRow name='username' label='User Name'/>
-            <FormRow name='email' label='Email'/>
-            <FormRow name='password' label='Password'/>
-            <FormRow name='repeatPassword' label='Repeat Password'/>
-            <FormRow name='gender' label='Gender'/>
-            <FormRow name='age' label='Age'/>
-        </Form>
-    )
-}
-
-
-
+*/
 
 
