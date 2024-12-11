@@ -44,7 +44,8 @@ const styles = {
     formRow: {
         display: 'flex',
         alignItems: 'center',
-        position: 'relative'  
+        position: 'relative',
+        padding: '10px 0'
     },
     label: {
         width: '12rem',    
@@ -109,21 +110,23 @@ export function FilterForm({sendToParent}) {
                 <FormikForm>
                     <FormRow name='title' label='Title'/>
                     <div style={filterForm.tagsDiv}>
-                        <label style={{color: 'white'}}>Tags</label>
-                        <button className='headerButton' type="button" onClick={() => setFieldValue('tagsAny', [...values.tagsAny, ''])}>Add Tag</button>
-                    </div>
-                    {values.tagsAny.map((_, index) => (
-                        <div key={index}>
-                            <Field name={`tagsAny.${index}`} type="text"/>
-                            <button className='headerButton' type="button" onClick={() => {
-                                const newTags = values.tagsAny.filter((_, i) => i !== index);
-                                setFieldValue('tagsAny', newTags);
-                            }}>Remove</button>
+                        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                            <label style={{color: 'white', fontWeight: 'bold'}}>Tags</label>
+                            <button className='headerButton' type="button" onClick={() => setFieldValue('tagsAny', [...values.tagsAny, ''])}>Add Tag</button>
                         </div>
-                    ))}
+                        {values.tagsAny.map((_, index) => (
+                            <div key={index} style={{display: 'flex', justifyContent: 'space-between', margin: '10px 0'}}>
+                                <Field name={`tagsAny.${index}`} type="text"/>
+                                <button className='headerButton' type="button" onClick={() => {
+                                    const newTags = values.tagsAny.filter((_, i) => i !== index);
+                                    setFieldValue('tagsAny', newTags);
+                                }}>Remove</button>
+                            </div>
+                        ))}
+                    </div>
                     <FormRow name='community' label='Autonomous Community'/>
                     <FormRow name='area' label='Province'/>
-                    <button className='headerButton' type="submit">Search</button>
+                    <button className='headerButton' type="submit" style={{margin: '10px 0', width: '100%'}}>Search</button>
                 </FormikForm>
             )}
         </Formik>
@@ -133,7 +136,12 @@ export function FilterForm({sendToParent}) {
 const filterForm = {
     tagsDiv: {
         display: 'flex',
-        justifyContent: 'space-between'
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        border: 'solid 1px rgba(200, 200, 200, 0.5)',
+        borderRadius: '5px',
+        padding: '10px',
+        margin: '10px 0 10px 0'
     }
 }
 

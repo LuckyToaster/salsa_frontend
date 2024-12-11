@@ -4,12 +4,15 @@ import './main.css'
 
 export default function Card({json}) {
     return (<div className='glass-background' style={styles.card}>
-        <div>
-            <img style={styles.img} src={json.pictures[0] ? getImgURL(json.pictures[0]) : emptyPfp} />           
-            <h3>{json.title}</h3>
+        <div style={styles.nonContact}>
+            <div>
+                <img style={styles.img} src={json.pictures[0] ? getImgURL(json.pictures[0]) : emptyPfp} />           
+                <h3>{json.title}</h3>
+            </div>
+            <p style={styles.description}>{json.description}</p>
         </div>
-        <p style={styles.description}>{json.description}</p>
         <div style={styles.contactInfo}>
+            <h3 style={{margin: '0'}}>Contact Info:</h3>
             <h4 style={{margin: '0'}}>{json.contactId.phoneNum}</h4>
             <h4 style={{margin: '0'}}>{json.contactId.email}</h4>
         </div>
@@ -32,9 +35,17 @@ const styles = {
         borderRadius: '50%'
     },
     description: {
-        margin: '0 1rem 0 1rem'
+        margin: '0 1rem 0 1rem',
+        fontSize: '0.8rem'
     },
     contactInfo: {
-        margin: '1rem 0 1rem 0'
+        margin: '1rem 0 1rem 0',
+    },
+    nonContact: {
+        border: 'solid 1px rgba(200, 200, 200, 0.5)',
+        borderRadius: '5px',
+        padding: '10px',
+        margin: '10px',
+        height: '80%'
     }
 }

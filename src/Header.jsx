@@ -12,15 +12,15 @@ export default function Header() {
     return (
         <header className='glass-background' style={styles.header}>
             <nav style={styles.nav}>
-                <ModalButton title='Filter' className='headerButton' style={{marginRight: '85px'}}>
-                    <FilterForm sendToParent={(json) => console.log(json)}/>
-                </ModalButton>
                 <img style={styles.logo} src={logo}/>
                 <div>
-                    <ModalButton title='Login' className='headerButton'>
+                    <ModalButton title='Filter' className='headerButton' style={styles.headerButton}>
+                        <FilterForm sendToParent={(json) => console.log(json)}/>
+                    </ModalButton>
+                    <ModalButton title='Login' className='headerButton' style={styles.headerButton}>
                         <LogInForm sendToParent={(json) => console.log(json)}/> 
                     </ModalButton>
-                    <ModalButton title='Signin' style={{marginLeft: '10px'}} className='headerButton'>
+                    <ModalButton title='Signin' className='headerButton' style={styles.headerButton}>
                         <SignInForm sendToParent={(json) => console.log(json)}/>
                     </ModalButton>
                 </div>
@@ -46,5 +46,8 @@ const styles = {
     logo: {
         height: '41px',
         width: 'auto',
+    },
+    headerButton: {
+        margin: '0 10px'
     }
 }
